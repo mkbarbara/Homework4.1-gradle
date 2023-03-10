@@ -20,7 +20,7 @@ class RegistrationTest {
         Date dateNow = new Date();
         SimpleDateFormat formatForDateNow = new SimpleDateFormat("dd.MM.yyyy");
         $("[data-test-id = date] input").setValue(formatForDateNow.format(dateNow));
-        $("[data-test-id = agreement] input").click();
+        $("[data-test-id = agreement] [role= presentation]").click();
         $$("button").find(exactText("Забронировать")).click();
         $(withText("Успешно!")).shouldBe(visible, Duration.ofMillis(15000));
     }
