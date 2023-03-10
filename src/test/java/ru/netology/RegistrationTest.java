@@ -1,7 +1,6 @@
 package ru.netology;
 
 import org.junit.jupiter.api.Test;
-import com.codeborne.selenide.Configuration;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -14,7 +13,6 @@ import static com.codeborne.selenide.Selenide.*;
 class RegistrationTest {
     @Test
     void shouldRegister() {
-        Configuration.headless = true;
         open("http://localhost:9999");
         $("[data-test-id = city] input").setValue("Казань");
         $("[data-test-id = name] input").setValue("Макарова Варвара");
