@@ -12,7 +12,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 class RegistrationTest {
     @Test
-    void shouldRegisterByAccountNumberDOMModification() {
+    void shouldRegister() {
         open("http://localhost:9999");
         $("[data-test-id = city] input").setValue("Казань");
         $("[data-test-id = name] input").setValue("Макарова Варвара");
