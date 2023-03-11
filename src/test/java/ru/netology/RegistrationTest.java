@@ -1,6 +1,7 @@
 package ru.netology;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 
 import java.text.SimpleDateFormat;
 import java.time.Duration;
