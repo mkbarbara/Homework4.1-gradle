@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 
 class RegistrationTest {
-
+    
     @Test
     void shouldRegister() {
         open("http://localhost:9999");
@@ -21,12 +21,16 @@ class RegistrationTest {
         $("[data-test-id = name] input").setValue("Макарова Варвара");
         $("[data-test-id = phone] input").setValue("+79856789456");
         $("[data-test-id=date] input").sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
-        LocalDate dateNow = LocalDate.now().plusDays(4);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-        $("[data-test-id = date] input").setValue(dateNow.format(formatter));
+        String planningDate = generateDate(4, "dd.MM.yyyy");
+        $("[data-test-id = date] input").setValue(planningDate);
         $("[data-test-id = agreement] [role= presentation]").click();
         $$("button").find(exactText("Забронировать")).click();
         $(withText("Успешно!")).shouldBe(visible, Duration.ofMillis(15000));
+        $(".notification__content").shouldHave(Condition.text("Встреча успешно забронирована на " + planningDate), Duration.ofSeconds(15)).shouldBe(Condition.visible);
+    }
+
+    private String generateDate(long addDays, String pattern) {
+        return LocalDate.now().plusDays(addDays).format(DateTimeFormatter.ofPattern(pattern));
     }
 }
 
